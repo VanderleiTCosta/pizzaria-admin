@@ -1,69 +1,78 @@
-import { useEffect, useState } from 'react'
-import './List.css'
-import axios from 'axios'
-import {toast} from 'react-toastify'
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import './List.css';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom'; // Importe o Link
+import { assets } from '../../assets/assets'; // Importe os assets
 
-const List = ({url}) => {
+const List = ({ url }) => {
+  const [list, setList] = useState([]);
 
-  const [list,setList] = useState([]);
-  const fetchList = async ()=>{
-    const response = await axios.get(`${url}/api/food/list`);
-    
-    
-    if (response.data.success) {
-      setList(response.data.data);
+  const fetchList = async () => {
+    try {
+      const response = await axios.get(`${url}/api/professional/list`);
+      if (response.data.success) {
+        setList(response.data.data);
+      } else {
+        toast.error('Erro ao buscar a lista de profissionais');
+      }
+    } catch (error) {
+      toast.error('Erro ao conectar com o servidor.');
     }
-    else{
-      toast.error("Error")
-    }
-  }
+  };
 
-  const removeFood = async(foodId) =>{
-    const response = await axios.post(`${url}/api/food/remove`,{id:foodId});
-    await fetchList();
-    if (response.data.success) {
-      toast.success(response.data.message)
+  const removeProfessional = async (professionalId) => {
+    try {
+      const response = await axios.post(`${url}/api/professional/remove`, {
+        id: professionalId
+      });
+      await fetchList();
+      if (response.data.success) {
+        toast.success(response.data.message);
+      } else {
+        toast.error('Erro ao remover o profissional');
+      }
+    } catch (error) {
+      toast.error('Erro ao conectar com o servidor.');
     }
-    else{
-      toast.error("Error");
-    }
-  }
+  };
 
-
-  useEffect(()=>{
+  useEffect(() => {
     fetchList();
-  },[])
+  }, []);
 
   return (
-    <div className='list add flex-col'>
-      <p>Lista de Comidas</p>
+    <div className="list add flex-col">
+      <p>Todos os Profissionais</p>
       <div className="list-table">
         <div className="list-table-format title">
           <b>Imagem</b>
           <b>Nome</b>
           <b>Categoria</b>
-          <b>Preço</b>
+          <b>Telefone</b>
           <b>Ação</b>
         </div>
-        {list.map((item,index)=>{
-            return(
-              <div key={index} className='list-table-format'>
-                  <img src={`${url}/images/`+item.image} alt="" />
-                  <p>{item.name}</p>
-                  <p>{item.category}</p>
-                  <p>R${item.price}</p>
-                  <p onClick={()=>removeFood(item._id)} className='cursor'>X</p>
+        {list.map((item, index) => {
+          return (
+            <div key={index} className="list-table-format">
+              <img src={`${url}/images/` + item.image} alt="" />
+              <p>{item.name}</p>
+              <p>{item.category}</p>
+              <p>{item.phone}</p>
+              <div className='action-icons'>
+                <Link to={`/edit/${item._id}`}>
+                    <img src="https://img.icons8.com/?size=100&id=6697&format=png&color=ffffff" alt="Editar" className='cursor action-icon' />
+                </Link>
+                <p onClick={() => removeProfessional(item._id)} className="cursor">
+                  <img src="https://img.icons8.com/?size=100&id=11201&format=png&color=ffffff" alt="Delete" />
+                </p>
               </div>
-            )
+            </div>
+          );
         })}
       </div>
     </div>
   );
 };
 
-List.propTypes = {
-  url: PropTypes.string.isRequired,
-};
-
-export default List
+export default List;

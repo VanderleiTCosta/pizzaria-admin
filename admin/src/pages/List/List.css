@@ -6,15 +6,18 @@
     padding: 12px 15px;
     border: 1px solid #cacaca;
     font-size: 13px;
+    color: white;
 }
 .list-table-format.title{
     background-color: #f9f9f9;
+    color: black;
 }
 .list-table-format img{
     width: 50px;
 }
 .cursor{
     cursor: pointer;
+    color: red;
 }
 
 @media (max-width:600px) {
@@ -25,4 +28,12 @@
     .list-table-format.title{
         display: none;
     }
+}
+.action-icons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.action-icon {
+    width: 20px;
 }

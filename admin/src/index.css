@@ -1,34 +1,77 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
-*{
-  padding: 0;
+:root {
+  --background-dark: #05004d;
+  --surface-dark: #050135;
+  --primary-color: #003cff;
+  --text-primary: #ffffff;
+  --text-secondary: #b3b3b3;
+  --border-color: #2c2c2c;
+}
+
+* {
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
-  font-family: Outfit;
+  font-family: 'Roboto', sans-serif;
 }
 
-body{
-  min-height: 100vh;
-  background-color: #fcfcfc;
+body {
+  background-color: var(--background-dark);
+  color: var(--text-primary);
 }
 
-a{
+a {
   text-decoration: none;
   color: inherit;
 }
 
-hr{
+hr {
   border: none;
   height: 1px;
-  background-color: #a9a9a9;
+  background-color: var(--border-color);
 }
 
-.app-content{
+.app-content {
   display: flex;
-
 }
-.flex-col{
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+
+/* Estilos para Formulários e Tabelas */
+input, select, textarea {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  background-color: var(--surface-dark);
+  color: var(--text-primary);
+  font-size: 14px;
+  outline-color: var(--primary-color);
+}
+
+button, .add-btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover, .add-btn:hover {
+  background-color: #002ab3; 
+}
+
+.list-table-format {
+    border: 1px solid var(--border-color);
+    background-color: var(--surface-dark);
+}
+
+.list-table-format.title {
+    background-color: #2a2a2a;
+    color: var(--text-primary);
+}
+
+.cursor {
+    cursor: pointer;
 }

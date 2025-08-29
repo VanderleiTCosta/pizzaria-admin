@@ -1,0 +1,20 @@
+.category-page {
+  width: 80%;
+  margin: 30px auto;
+}
+.category-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+.category-form input {
+  padding: 10px;
+  font-size: 1rem;
+}
+.category-form button {
+  padding: 10px;
+  color: white;
+  border: none;
+  cursor: pointer;
+}

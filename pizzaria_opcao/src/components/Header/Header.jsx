@@ -1,15 +1,23 @@
-import './Header.css'
+import React from 'react';
+import './Header.css';
 
 const Header = () => {
+  const scrollToFilters = () => {
+    document.getElementById('filters-container').scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <div className='header'>
+    <div className="header">
       <div className="header-contents">
-        <h2>A melhor comida da região!</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus itaque nesciunt eaque molestiae expedita voluptatem quo voluptas voluptates aspernatur eveniet, commodi mollitia consequatur. A, quaerat sit? Quis voluptatem ullam provident.</p>
-        <button>Menu</button>
+        <h2>Encontre o Profissional Certo para Você</h2>
+        <p>
+          Navegue por categorias e localidades para encontrar especialistas
+          qualificados perto de você. Comece sua busca agora mesmo!
+        </p>
+        <button onClick={scrollToFilters}>Buscar Profissionais</button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
