@@ -13,14 +13,7 @@ const port = process.env.PORT || 4000;
 
 // Middleware
 app.use(express.json());
-app.use(cors({
-  origin: [
-    "https://project-admin-6zft.onrender.com",
-    "https://project-client-im3a.onrender.com" // Coloque a URL do seu outro frontend aqui
-  ],
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
-}));
+app.use(cors({ origin: "*" }));
 
 // Conexão com o BD
 connectDB();
