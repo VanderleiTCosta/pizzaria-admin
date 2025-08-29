@@ -1,7 +1,7 @@
 import express from 'express';
 import {
   addProfessional,
-  listProfessionals,
+  listProfessional,
   removeProfessional,
   getProfessionalById,
   updateProfessional
@@ -23,7 +23,7 @@ const upload = multer({ storage: storage });
 professionalRouter.post('/add', upload.fields([{ name: 'image', maxCount: 1 }, { name: 'portfolio_images', maxCount: 8 }]), addProfessional);
 
 // Rota para listar
-professionalRouter.get('/list', listProfessionals);
+professionalRouter.get('/list', listProfessional);
 
 // Rota para remover
 professionalRouter.post('/remove', removeProfessional);
