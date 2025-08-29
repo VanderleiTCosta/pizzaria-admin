@@ -5,7 +5,7 @@ export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
   const [professional_list, setProfessionalList] = useState([]);
-  const url = 'http://localhost:4000'; // URL do seu backend
+  const url = 'https://project-server-vlsp.onrender.com'; // URL do seu backend
   const [token, setToken] = useState('');
 
   const fetchProfessionalList = async () => {
